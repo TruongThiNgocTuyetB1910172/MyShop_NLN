@@ -2,7 +2,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Đăng nhập hệ thống</title>
+<title>Admin</title>
 
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet"
@@ -14,5 +14,5 @@
 <!-- Theme style -->
 <link rel="stylesheet" href={{ asset('template/admin/dist/css/adminlte.min.css') }}>
 
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @yield('head')
