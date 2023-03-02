@@ -9,12 +9,12 @@
     <div class="card-body">
       <div class="form-group">
         <label for="menu">Name</label>
-        <input type="text" class="form-control"  name="name"  placeholder="nhap ten danh muc">
+        <input type="text" class="form-control"  name="name"  placeholder="write category">
       </div>
       <div class="form-group">
         <label for="menu">Parent</label>
         <select name="parent_id" id="" class="form-control">
-            <option value="0">Danh muc cha</option>
+            <option value="0">Parent category</option>
             @foreach ($menus as $menu )
             <option value="{{ $menu->id }}">{{ $menu->name }}</option>
             @endforeach
@@ -23,11 +23,11 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="menu">Mo ta ngan</label>
+        <label for="menu">Desciption</label>
         <textarea class="form-control"  name="description" ></textarea>
       </div>
       <div class="form-group">
-        <label for="menu">Mo ta chi tiet</label>
+        <label for="menu">Desciption Detail</label>
         <textarea class="form-control"  name="content" ></textarea>
       </div>
       <div class="form-check">

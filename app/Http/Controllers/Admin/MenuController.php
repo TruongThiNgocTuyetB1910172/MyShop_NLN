@@ -28,7 +28,7 @@ class MenuController extends Controller
     ]);
     }
     public function store(CreateFromRequest $request){
-       $result = $this->menuService->create($request);
+       $this->menuService->create($request);
        return redirect()->back();
     }
     public function index(){

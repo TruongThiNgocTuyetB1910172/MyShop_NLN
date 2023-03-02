@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\Users\LoginController;
+use App\Http\Controllers\Client\HomeController;
 use App\Models\Menu;
 use GuzzleHttp\Psr7\Uri;
 
@@ -36,7 +39,22 @@ Route::middleware(['auth'])->group(function () {
             route::post('edit/{menu}',[MenuController::class,'update']);
             Route::DELETE('destroy', [MenuController::class, 'destroy']);
         });
-      });
+        route::prefix('products')->group(function(){
+            route::get('add',[ProductController::class,'create']);
+            route::post('add',[ProductController::class,'store']);
+            route::get('list',[ProductController::class,'index']);
+            route::get('edit/{product}',[ProductController::class,'show']);
+            route::post('edit/{menu}',[ProductController::class,'update']);
+            Route::DELETE('destroy', [ProductController::class, 'destroy']);
+        });
+        Route::post('upload/services', [UploadController::class, 'store']);
+    });
+    
+        #upload
+      
 });
 Route::get('admin/users/login',[LoginController::class,'index'])->name('login');
 Route::post('admin/users/login/store',[LoginController::class,'store']);
+//Client
+
+Route::get('home',[HomeController::class,'index']);
