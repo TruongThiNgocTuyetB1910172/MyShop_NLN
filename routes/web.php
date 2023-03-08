@@ -1,14 +1,18 @@
 <?php
 
 use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\Admin\SilderController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\Users\LoginController;
-use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\MainController as ControllersMainController;
+use App\Http\Controllers\MenuController as ControllersMenuController;
+use App\Http\Controllers\ProductController as ControllersProductController;
 use App\Models\Menu;
 use GuzzleHttp\Psr7\Uri;
-
+use Illuminate\Routing\RouteRegistrar;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,8 +48,16 @@ Route::middleware(['auth'])->group(function () {
             route::post('add',[ProductController::class,'store']);
             route::get('list',[ProductController::class,'index']);
             route::get('edit/{product}',[ProductController::class,'show']);
-            route::post('edit/{menu}',[ProductController::class,'update']);
+            route::post('edit/{product}',[ProductController::class,'update']);
             Route::DELETE('destroy', [ProductController::class, 'destroy']);
+        });
+        route::prefix('sliders')->group(function(){
+            route::get('add',[SilderController::class,'create']);
+            route::post('add',[SilderController::class,'store']);
+            route::get('list',[SilderController::class,'index']);
+            route::get('edit/{slider}',[SilderController::class,'show']);
+            route::post('edit/{slider}',[SilderController::class,'update']);
+            Route::DELETE('destroy', [SilderController::class, 'destroy']);
         });
         Route::post('upload/services', [UploadController::class, 'store']);
     });
@@ -57,4 +69,11 @@ Route::get('admin/users/login',[LoginController::class,'index'])->name('login');
 Route::post('admin/users/login/store',[LoginController::class,'store']);
 //Client
 
-Route::get('home',[HomeController::class,'index']);
+Route::get('/',[ControllersMainController::class,'index']);
+Route::get('show_product',[ControllersMainController::class,'show']);
+Route::get('product-detail/{id}', [ControllersProductController::class, 'index']);
+Route::post('add-cart',[CartController::class,'index']);
+
+
+Route::get('/search', [ControllersProductController::class, 'getSearch'])
+;

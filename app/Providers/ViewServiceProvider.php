@@ -21,7 +21,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-     view()->composer('client.layouts.app', MenuComposer::class );
+     view()->composer('product.list', MenuComposer::class );
    
     }
 }

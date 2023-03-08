@@ -22,6 +22,10 @@ class Product extends Model
     ];
 
     public function menu(){
-        return $this ->hasOne(Menu::class, 'id', 'menu_id');
+        return $this ->hasOne(Menu::class, 'id', 'menu_id')->withDefault('name');
+    }
+    public function getBy($dataSearch, $menuId)
+    {
+        return $this->whereHas('menus', fn ($q) => $q->where('menu_id', $menuId))->paginate(10);
     }
 }

@@ -15,6 +15,9 @@ class MenuService{
     public function getAll(){
       return Menu::orderbyDesc('id')->paginate(15);
     }
+    public function show(){
+      return Menu::select('name', 'id')->orderByDesc('id')->get();
+    }
   
     public function create($request){
       try{
@@ -64,4 +67,19 @@ class MenuService{
         $request->session()->flash('success', 'Cập nhật danh mục thành công');
         return true;
     }
+    // public function getProduct($menu, $request)
+    // {
+    //     $query = $menu->products()
+    //         ->select('id', 'name', 'price', 'price_sale', 'thumb')
+    //         ->where('active', 1);
+
+    //     if ($request->input('price')) {
+    //         $query->orderBy('price', $request->input('price'));
+    //     }
+
+    //     return $query
+    //         ->orderByDesc('id')
+    //         ->paginate(12)
+    //         ->withQueryString();
+    // }
 }

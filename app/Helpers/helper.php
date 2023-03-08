@@ -54,15 +54,15 @@ class Helper
         foreach ($menus as $key => $menu) {
             if ($menu->parent_id == $parent_id) {
                 $html .= '
-                    <li>
-                        <a href="/danh-muc/' . $menu->id . '-' . Str::slug($menu->name, '-'). '.html">
+                    <li class="pb-3">
+                        <a ' . $menu->id . '-' . Str::slug($menu->name, '-'). '.html class="collapsed d-flex justify-content-between h3 text-decoration-none">
                             ' . $menu->name . '
                         </a>';
 
                 unset($menus[$key]);
 
                 if (self::isChild($menus, $menu->id)) {
-                    $html .= '<ul class="sub-menu">';
+                    $html .= '<ul class="collapse list-unstyled pl-3">';
                     $html .= self::menus($menus, $menu->id);
                     $html .= '</ul>';
                 }
@@ -85,11 +85,10 @@ class Helper
         return false;
     }
 
-//     public static function price($price = 0, $priceSale = 0)
-//     {
-//         if ($priceSale != 0) return number_format($priceSale);
-//         if ($price != 0)  return number_format($price);
-//         return '<a href="/lien-he.html">Liên Hệ</a>';
-//     }
-// }
+    public static function price($price = 0, $priceSale = 0)
+    {
+        if ($priceSale != 0) return number_format($priceSale);
+        if ($price != 0)  return number_format($price);
+        return '<a href="/lien-he.html">Liên Hệ</a>';
+    }
 }
