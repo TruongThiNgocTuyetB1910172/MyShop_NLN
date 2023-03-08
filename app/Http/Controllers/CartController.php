@@ -31,4 +31,17 @@ class CartController extends Controller
             'carts' => $request->session()->get('carts'),
         ]);
     }
+
+    public function update(Request $request){
+        $this->cartService->update($request);
+        return redirect('/carts');
+    }
+    public function remove($id=0, Request $request){
+        $this->cartService->remove($id, $request);
+        return redirect('/carts');
+    }
+
+    public function checkout(){
+        return view('carts.checkout');
+    }
 }

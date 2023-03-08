@@ -35,14 +35,26 @@ class CartService{
     }
     public function getProduct($request)
     {
-        $carts = $request->session()->get('carts');;
+        $carts = $request->session()->get('carts');
         if (is_null($carts)) return [];
 
         $productId = array_keys($carts);
-        return Product::select('id', 'name', 'price', 'price_sale', 'thumb')
+        return Product::select('id', 'name', 'price',  'thumb')
             ->where('active', 1)
             ->whereIn('id', $productId)
             ->get();
     }
-    
+    public function update($request){
+        $request->session()->put('carts', $request->input('product-quanity'));
+        return true;
+    }
+    public function remove($id, $request)
+    {
+        $carts = $request->session()->get('carts');;
+       
+        unset($carts[$id]);
+
+        $request->session()->put('carts', $carts);
+        return true;
+    }
 }

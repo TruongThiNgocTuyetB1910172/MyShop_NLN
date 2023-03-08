@@ -1,15 +1,19 @@
 @extends('main')
 
 @section('content')
-    <form class="bg0 p-t-130 p-b-85" method="post">
-        @include('admin.alert')
 
-        @if (count($products) != 0)
+
+
+    {{-- <form class="bg0 p-t-130 p-b-85" method="post">
+         @include('admin.alert')
+
+        @if (count($products) != 0) 
+        
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-                        <div class="m-l-25 m-r--38 m-lr-0-xl">
-                            <div class="wrap-table-shopping-cart">
+                    <div class="">
+                        <div class="">
+                            <div class="">
                                 @php $total = 0; @endphp
                                 <table class="table-shopping-cart">
                                     <tbody>
@@ -28,9 +32,9 @@
                                             $priceEnd = $price * $carts[$product->id];
                                             $total += $priceEnd;
                                         @endphp
-                                        <tr class="table_row">
-                                            <td class="column-1">
-                                                <div class="how-itemcart1">
+                                        <tr >
+                                            <td >
+                                                <div >
                                                     <img src="{{ $product->thumb }}" alt="IMG">
                                                 </div>
                                             </td>
@@ -141,5 +145,125 @@
     </form>
     @else
         <div class="text-center"><h2>Giỏ hàng trống</h2></div>
-    @endif
-@endsection
+    @endif  --}}
+   
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+   
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
+            
+        </div>
+    </div>
+    
+    <form action="" method="POST">
+        @if (count($products) != 0) 
+            <div class="container-fluid pt-5">
+                <div class="row px-xl-5">
+                    <div class="col-lg-8 table-responsive mb-5">
+                        <table class="table table-bordered text-center mb-0">
+                            @php $total = 0; @endphp
+                            <thead class="bg-secondary text-dark">
+                                <tr>
+                                    <th>Img</th>
+                                    <th>Products</th>
+                                     <th>Price</th> 
+                                    <th>Quantity</th>
+                                    <th>Total</th> 
+                                    <th>$nbsp</th>
+                                </tr>
+                            </thead>
+                            <tbody class="align-middle">
+                                @foreach($products as $key => $product)
+                                @php
+                                    
+                                    $price = $product->price_sale != 0 ? $product->price_sale : $product->price;
+                                    $priceEnd = $price * $carts[$product->id];
+                                    $total += $priceEnd;
+                                @endphp
+                               
+                                <tr>
+                                    <th><img src="{{ $product->thumb }}" alt="" style="width: 50px"></th>
+                                    <td class="align-middle"> {{$product->name }}</td>
+                                    {{-- <td class="align-middle">{{ number_format($price, 0, '', '.')}}</td> --}}
+                                    <td class="align-middle">{{number_format($price, 0, '', '.')}}</td>
+                                    <td class="align-middle">
+                                        <div class="input-group quantity mx-auto" style="width: 100px;">
+                                            {{-- <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-primary btn-minus" >
+                                                <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div> --}}
+                                            <input type="number" class="form-control form-control-sm bg-secondary text-center" name="product-quanity[{{ $product->id }}]" value="{{ $carts[$product->id] }}">
+                                            {{-- <input type="number" name="product-quanity[{{ $product->id }}]" class="form-control form-control-sm bg-secondary text-center"> --}}
+                                            {{-- <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-primary btn-plus">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div> --}}
+                                        </div>
+                                    </td>
+                                    <td class="align-middle">{{ number_format($priceEnd, 0, '', '.')}}</td>
+                                    {{-- <td class="align-middle">{{ $product->price * $carts[$product->id] }}</td> --}}
+                                    <td><a href="/carts/delete/{{ $product->id }}">Delete</a></td>
+                            
+                                </tr>
+                            
+                            </tbody>
+                            @endforeach
+                            <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+                                <div class="flex-w flex-m m-r-20 m-tb-5">
+                                    
+    
+                                    @csrf
+                                    <input type="submit" value="Update Cart" formaction="update-cart"
+                                        class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" >
+                            </div>
+                        </table>
+                    </div>
+                    <div class="col-lg-4">
+                        
+                        <div class="card border-secondary mb-5">
+                            <div class="card-header bg-secondary border-0">
+                                <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
+                            </div>
+                            <div class="card-body">
+                            
+                            <div class="card-footer border-secondary bg-transparent">
+                                <div class="d-flex justify-content-between mt-2">
+                                    <h5 class="font-weight-bold">Total: </h5>
+                                    <h5 class="font-weight-bold">{{ number_format($total, 0, '', '.')}}</h5>
+                                </div>
+                                <a href=""><button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @else
+            <div class="text-center"><h2>Giỏ hàng trống</h2></div>
+        @endif
+    
+    </form>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
+@endsection 

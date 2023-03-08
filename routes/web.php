@@ -74,6 +74,9 @@ Route::get('show_product',[ControllersMainController::class,'show']);
 Route::get('product-detail/{id}', [ControllersProductController::class, 'index']);
 Route::post('add-cart', [CartController::class, 'index']);
 route::get('carts', [CartController::class, 'show']);
+route::post('update-cart', [CartController::class, 'update']);
+route::get('carts/delete/{id}' ,[CartController::class,'remove']);
+// route::get('checkout', [CartController::class,'checkout']);
 
 
 Route::get('/search', [ControllersProductController::class, 'getSearch'])

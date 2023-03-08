@@ -73,7 +73,7 @@
                                     <i class="text-muted fa fa-star"></i>
                                 </li>
                             </ul>
-                            <p class="text-center mb-0">{{ $product->price }} VNĐ</p>
+                            <p class="text-center mb-0">{{ number_format($product->price, 0, '', '.')}} VNĐ</p>
                         </div>
                     </div>
                  
