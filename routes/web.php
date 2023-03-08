@@ -72,7 +72,8 @@ Route::post('admin/users/login/store',[LoginController::class,'store']);
 Route::get('/',[ControllersMainController::class,'index']);
 Route::get('show_product',[ControllersMainController::class,'show']);
 Route::get('product-detail/{id}', [ControllersProductController::class, 'index']);
-Route::post('add-cart',[CartController::class,'index']);
+Route::post('add-cart', [CartController::class, 'index']);
+route::get('carts', [CartController::class, 'show']);
 
 
 Route::get('/search', [ControllersProductController::class, 'getSearch'])
