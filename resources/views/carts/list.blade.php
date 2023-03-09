@@ -153,21 +153,22 @@
 
 <body>
    
-    <div class="container-fluid bg-secondary mb-5">
+    <div class="container-fluid bg-success mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
             <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
             
         </div>
     </div>
+    @include('admin.alert')
     
-    <form action="" method="POST">
+    <form action="checkout-add" method="POST">
         @if (count($products) != 0) 
             <div class="container-fluid pt-5">
                 <div class="row px-xl-5">
                     <div class="col-lg-8 table-responsive mb-5">
                         <table class="table table-bordered text-center mb-0">
                             @php $total = 0; @endphp
-                            <thead class="bg-secondary text-dark">
+                            <thead class="bg-success text-dark">
                                 <tr>
                                     <th>Img</th>
                                     <th>Products</th>
@@ -193,22 +194,13 @@
                                     <td class="align-middle">{{number_format($price, 0, '', '.')}}</td>
                                     <td class="align-middle">
                                         <div class="input-group quantity mx-auto" style="width: 100px;">
-                                            {{-- <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-primary btn-minus" >
-                                                <i class="fa fa-minus"></i>
-                                                </button>
-                                            </div> --}}
-                                            <input type="number" class="form-control form-control-sm bg-secondary text-center" name="product-quanity[{{ $product->id }}]" value="{{ $carts[$product->id] }}">
-                                            {{-- <input type="number" name="product-quanity[{{ $product->id }}]" class="form-control form-control-sm bg-secondary text-center"> --}}
-                                            {{-- <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-primary btn-plus">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div> --}}
+                                            
+                                            <input type="number" class="form-control form-control-sm bg-success text-center" name="product-quanity[{{ $product->id }}]" value="{{ $carts[$product->id] }}">
+                                            
                                         </div>
                                     </td>
                                     <td class="align-middle">{{ number_format($priceEnd, 0, '', '.')}}</td>
-                                    {{-- <td class="align-middle">{{ $product->price * $carts[$product->id] }}</td> --}}
+                                   
                                     <td><a href="/carts/delete/{{ $product->id }}">Delete</a></td>
                             
                                 </tr>
@@ -218,36 +210,118 @@
                             <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
                                 <div class="flex-w flex-m m-r-20 m-tb-5">
                                     
-    
+        
                                     @csrf
                                     <input type="submit" value="Update Cart" formaction="update-cart"
                                         class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" >
+                                </div>
                             </div>
                         </table>
-                    </div>
-                    <div class="col-lg-4">
-                        
-                        <div class="card border-secondary mb-5">
-                            <div class="card-header bg-secondary border-0">
-                                <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
+                  
+                </div>
+                <div class="col-lg-4">
+                    
+                    {{-- <div class="card border-secondary mb-5">
+                        <div class="card-header bg-success border-0">
+                            <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3 pt-1">
+                                <h6 class="font-weight-medium">Subtotal</h6>
+                                <h6 class="font-weight-medium">$150</h6>
                             </div>
-                            <div class="card-body">
-                            
-                            <div class="card-footer border-secondary bg-transparent">
-                                <div class="d-flex justify-content-between mt-2">
-                                    <h5 class="font-weight-bold">Total: </h5>
-                                    <h5 class="font-weight-bold">{{ number_format($total, 0, '', '.')}}</h5>
-                                </div>
-                                <a href=""><button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button></a>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="font-weight-medium">Shipping</h6>
+                                <h6 class="font-weight-medium">$10</h6>
                             </div>
                         </div>
-                    </div>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <div class="d-flex justify-content-between mt-2">
+                                <h5 class="font-weight-bold">Total</h5>
+                                <h5 class="font-weight-bold">$160</h5>
+                            </div>
+                            <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                        </div>
+                    </div> --}}
+                  
+                        <div class="card border-success mb-5">
+                            <div class="card-header bg-success border-0">
+                                <h4 class="font-weight-semi-bold m-0">Order Total</h4>
+                            </div>
+                            <div class="card-body">
+                                @php $total = 0; @endphp
+                                <h5 class="font-weight-medium mb-3">Products</h5>
+                               
+                               
+                               @foreach ($products as $key =>$product )
+                               @php
+                               $price = $product->price_sale != 0 ? $product->price_sale : $product->price;
+                               $priceEnd = $price * $carts[$product->id];
+                               $total += $priceEnd;
+                               @endphp
+                                   
+                               <div class="d-flex justify-content-between">
+                                   <p>{{ $product->name }} </p>
+                                   <p>x {{ $carts[$product->id] }}</p>
+                                   <p>{{ number_format($priceEnd, 0, '', '.')}}</p>
+                               </div>
+                               @endforeach
+                                <hr class="mt-0">
+                                <div class="d-flex justify-content-between mb-3 pt-1">
+                                    <h4 class="font-weight-medium">Subtotal</h4>
+                                    <h4 class="font-weight-medium">{{ number_format($total, 0, '', '.')}}</h4>
+                                </div>
+                                
+                               
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <h4 class="font-weight-semi-bold mb-4">Address</h4>
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label>Name</label>
+                                            <input class="form-control" type="text" placeholder="John" name="name" >
+                                        </div>
+                                     
+                                        <div class="col-md-6 form-group">
+                                            <label>E-mail</label>
+                                            <input class="form-control" type="text" placeholder="example@email.com" name="email" >
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label>Phone</label>
+                                            <input class="form-control" type="number" placeholder="+123 456 789" name="phone" >
+                                        </div>
+                                       
+                                        <div class="col-md-6 form-group">
+                                            <label>Address</label>
+                                            <input class="form-control" type="text" placeholder="123 Street" name="address" >
+                                        </div>
+                                        <div>
+                                            <label for="">Content</label>
+                                            <input class="form-control" type="text" placeholder="" name="content" >
+                                        </div>
+
+                                       
+                                    
+                                    </div>
+                                </div>
+                                <div class="card-footer border-secondary bg-transparent">
+                                    <button class="btn btn-lg btn-block btn-success font-weight-bold my-3 py-3">Place Order</button>
+                                </div>
+                             
+                            </div>
+                           
+                        </div>
+                       
+                  
                 </div>
             </div>
+
+           
         @else
             <div class="text-center"><h2>Giỏ hàng trống</h2></div>
         @endif
-    
+
     </form>
 
 

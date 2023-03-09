@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CartController as AdminCartController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\SilderController;
 use App\Http\Controllers\Admin\MenuController;
@@ -59,10 +60,14 @@ Route::middleware(['auth'])->group(function () {
             route::post('edit/{slider}',[SilderController::class,'update']);
             Route::DELETE('destroy', [SilderController::class, 'destroy']);
         });
+        #upload
         Route::post('upload/services', [UploadController::class, 'store']);
+        #cart
+        route::get('customer',[AdminCartController::class,'index']);
+        Route::DELETE('destroy', [AdminCartController::class, 'destroy']);
     });
     
-        #upload
+       
       
 });
 Route::get('admin/users/login',[LoginController::class,'index'])->name('login');
@@ -76,7 +81,9 @@ Route::post('add-cart', [CartController::class, 'index']);
 route::get('carts', [CartController::class, 'show']);
 route::post('update-cart', [CartController::class, 'update']);
 route::get('carts/delete/{id}' ,[CartController::class,'remove']);
-// route::get('checkout', [CartController::class,'checkout']);
+// route::post('checkout', [CartController::class,'checkout']);
+route::post('checkout-add',[CartController::class,'addCart']);
+
 
 
 Route::get('/search', [ControllersProductController::class, 'getSearch'])

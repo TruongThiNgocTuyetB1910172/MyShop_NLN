@@ -1,46 +1,4 @@
-{{-- @extends('admin.main')
-@section('content')
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tên sản phẩm </th>
-                <th>Danh mục </th>
-                <th>Giá </th>
-                <th>Giảm giá</th>
-                <th>Acive</th>
-                <th>Update</th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-        <body>
-            @foreach ($products as $key => $product)
-        
-            <tr>
-                <td>{{ $product->id }}</td>
-                <td>{{ $product->name }}</td>
-                <td>{{ $product->menu->name }}</td>
-                <td>{{ $product->price }}</td>
-                <td>{{ $product->price_sale }}</td>
-                <td>{{ \App\Helpers\helper::active($product->active)}}</td>
-                <td>{{ $product->updated_at }}</td>
-                
-       
-                <td>
-                    <a class="btn btn-primary btn-sm" href="/admin/products/edit/{{ $product->id }}">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a href="#" class="btn btn-danger btn-sm"
-                        onclick="removeRow({{ $products->id }}, \'/admin/products/destroy/\')">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </td>
-        </tr>
-        @endforeach
-        </body>
-    </table>
-    {!! $product->link() !!}
- @endsection --}}
+
  @extends('admin.main')
 
  @section('content')

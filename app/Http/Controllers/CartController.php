@@ -41,7 +41,22 @@ class CartController extends Controller
         return redirect('/carts');
     }
 
-    public function checkout(){
-        return view('carts.checkout');
+    // public function checkout(){
+    //     return view('carts.checkout');
+
+        
+    // }
+   
+    // public function checkout( Request $request){
+    //     $products= $this->cartService->getProduct($request);
+    //     return view('carts.checkout',[
+    //         'title' =>'dat hang',
+    //         'products' =>$products,
+    //         'carts' => $request->session()->get('carts'),
+    //     ]);
+    // }
+     public function addCart(Request $request){
+        $result = $this->cartService->addCart($request);
+        return redirect()->back();
     }
 }

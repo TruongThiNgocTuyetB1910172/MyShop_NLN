@@ -57,7 +57,7 @@ class ProductAdminService
 
     public function get()
     {
-        return Product:: with('menu')->orderByDesc('id')->paginate(10);
+        return Product:: with('menu')->orderByDesc('id')->paginate(6);
     }
 
     public function update($request, $product)
