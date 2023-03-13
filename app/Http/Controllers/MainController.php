@@ -26,6 +26,11 @@ class MainController extends Controller
             'products'=>$this->product->get(),
         ]);
     }
+    public function contact(){
+        return view('contact');
+    }
+    
+
 
     
     

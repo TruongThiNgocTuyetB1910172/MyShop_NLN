@@ -306,7 +306,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer border-secondary bg-transparent">
-                                    <button class="btn btn-lg btn-block btn-success font-weight-bold my-3 py-3">Place Order</button>
+                                    <button class="btn btn-lg btn-block btn-success font-weight-bold my-3 py-3">Buy</button>
                                 </div>
                              
                             </div>

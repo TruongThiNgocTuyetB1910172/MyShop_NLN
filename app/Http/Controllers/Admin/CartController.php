@@ -28,7 +28,7 @@ class CartController extends Controller
         if ($result) {
             return response()->json([
                 'error' => false,
-                'message' => 'Xóa thành công danh mục'
+                'message' => 'Xóa thành công khách hàng'
             ]);
         }
 

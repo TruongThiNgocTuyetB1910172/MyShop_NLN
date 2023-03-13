@@ -35,6 +35,7 @@
                     
                 </ul>
             </div>
+         
 
             <div class="col-lg-9">
                <center><h1>Product List</h1></center> 
@@ -53,7 +54,7 @@
                                 </div>
                             </div>
                         <div class="card-body">
-                            <a href="shop-single.html" class="h3 text-decoration-none">{{ $product->name }}</a>
+                            <a href="product-detail/{{ $product->id }}"" class="h3 text-decoration-none">{{ $product->name }}</a>
                             <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                
                                 <li class="pt-2">
@@ -95,5 +96,5 @@
 
   
 
-</html>
+
 @endsection
