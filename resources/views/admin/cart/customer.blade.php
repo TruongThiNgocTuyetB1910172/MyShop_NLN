@@ -29,7 +29,7 @@
                 <td>{{ $customer->updated_at }}</td>
                 <td>
                     <a class="btn btn-primary btn-sm" href="/admin/custromers/view/{{ $customer->id }}">
-                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-pen"></i>
                     </a>
                     <a href="#" class="btn btn-danger btn-sm"
                        onclick="removeRow({{ $customer->id }}, '/admin/destroy')">

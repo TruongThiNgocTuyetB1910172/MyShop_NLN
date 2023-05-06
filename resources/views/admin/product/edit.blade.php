@@ -12,7 +12,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="menu">Name-Product</label>
-                        <input type="text" name="name" value="{{ old('name') }}" class="form-control"  placeholder="Nhập tên sản phẩm">
+                        <input type="text" name="name" value="{{ $menu->name }}" class="form-control"
+                            placeholder="Nhập tên sản phẩm">
                     </div>
                 </div>
 
@@ -20,7 +21,7 @@
                     <div class="form-group">
                         <label>Danh Mục</label>
                         <select class="form-control" name="menu_id">
-                            @foreach($menus as $menu)
+                            @foreach ($menus as $menu)
                                 <option value="{{ $menu->id }}">{{ $menu->name }}</option>
                             @endforeach
                         </select>
@@ -32,31 +33,31 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="menu">Price</label>
-                        <input type="number" name="price" value="{{ old('price') }}"  class="form-control" >
+                        <input type="number" name="price" value="{{ $menu->price }}" class="form-control">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="menu">Price-Sale</label>
-                        <input type="number" name="price_sale" value="{{ old('price_sale') }}"  class="form-control" >
+                        <input type="number" name="price_sale" value="{{ $menu->price_sale }}" class="form-control">
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label>Description</label>
-                <textarea name="description" class="form-control">{{ old('description') }}</textarea>
+                <textarea name="description" class="form-control">{{ $menu->description }}</textarea>
             </div>
 
             <div class="form-group">
                 <label>Description deatil</label>
-                <textarea name="content" id="content" class="form-control">{{ old('content') }}</textarea>
+                <textarea name="content" id="content" class="form-control">{{ $menu->content }}</textarea>
             </div>
 
             <div class="form-group">
                 <label for="menu">Image</label>
-                <input type="file"  class="form-control" id="upload">
+                <input type="file" class="form-control" id="upload">
                 <div id="image_show">
 
                 </div>
@@ -66,11 +67,12 @@
             <div class="form-group">
                 <label>Active</label>
                 <div class="custom-control custom-radio">
-                    <input class="custom-control-input" value="1" type="radio" id="active" name="active" checked="">
+                    <input class="custom-control-input" value="1" type="radio" id="active" name="active"
+                        checked="">
                     <label for="active" class="custom-control-label">Yes</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input class="custom-control-input" value="0" type="radio" id="no_active" name="active" >
+                    <input class="custom-control-input" value="0" type="radio" id="no_active" name="active">
                     <label for="no_active" class="custom-control-label">No</label>
                 </div>
             </div>
@@ -80,7 +82,7 @@
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Update</button>
         </div>
-        
+
     </form>
 @endsection
 

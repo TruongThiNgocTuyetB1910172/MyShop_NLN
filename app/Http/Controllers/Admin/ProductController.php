@@ -43,7 +43,7 @@ class ProductController extends Controller
     public function show(Product $product){
        
         return view('admin.product.edit',[
-            'title'=>'Chỉnh sửa danh mục '.$product->name,
+            'title'=>'Chỉnh sửa sản phẩm '.$product->name,
             'menu'=>$product,
             'menus'=>$this->productService->getMenu(),
 

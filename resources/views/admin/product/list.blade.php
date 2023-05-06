@@ -10,8 +10,8 @@
              <th>Product Name</th>
              <th>Category</th>
              <th>Price</th>
-             <th>Price Sale</th>
-             <th>Active</th>
+             {{-- <th>Price Sale</th> --}}
+             {{-- <th>Active</th> --}}
              <th>Update</th>
              <th style="width: 100px">&nbsp;</th>
          </tr>
@@ -28,8 +28,8 @@
                  <td>{{ $product->name }}</td>
                  <td>{{ $product->menu->name }}</td>
                  <td>{{ $product->price }}</td>
-                 <td>{{ $product->price_sale }}</td>
-                 <td>{!! \App\Helpers\helper::active($product->active) !!}</td>
+                 {{-- <td>{{ $product->price_sale }}</td> --}}
+                 {{-- <td>{!! \App\Helpers\helper::active($product->active) !!}</td> --}}
                  <td>{{ $product->updated_at }}</td>
                  <td>
                      <a class="btn btn-primary btn-sm" href="/admin/products/edit/{{ $product->id }}">

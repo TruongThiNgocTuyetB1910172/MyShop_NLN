@@ -10,10 +10,10 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="/template/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="https://scontent.fvca1-2.fna.fbcdn.net/v/t39.30808-6/308678368_1801517516849987_436027427750825268_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=hgIAyq3RD6QAX-GgSEW&_nc_ht=scontent.fvca1-2.fna&oh=00_AfB3Znmu0VOwoqpA6mtH-4NOU4ulr8nhq_x-jIA-vcSGRA&oe=645B3027" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Ngoc Tuyet</a>
         </div>
       </div>
 
@@ -124,7 +124,7 @@
             <ul class="nav nav-treeview">
               
               <li class="nav-item">
-                <a href="admin/customer" class="nav-link">
+                <a href="/admin/customer" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Danh sách khách hàng</p>
                 </a>

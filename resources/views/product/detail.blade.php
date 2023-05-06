@@ -53,8 +53,8 @@
                             <p>{{ $products->description }}</p>
 
 
-                            <h6>Specification:</h6>
-                            <p>{{ $products->content }}</p>
+                            {{-- <h6>Specification:</h6>
+                            <p>{{ $products->content }}</p> --}}
 
                             <form action="/add-cart" method="POST">
                                 @csrf

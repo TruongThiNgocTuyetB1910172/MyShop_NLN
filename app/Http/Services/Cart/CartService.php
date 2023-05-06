@@ -132,4 +132,11 @@ public function delete($request)
 
     return false;
 }
+
+public function getProductForCart($customer)
+    {
+        return $customer->carts()->with(['product' => function ($query) {
+            $query->select('id', 'name', 'thumb');
+        }])->get();
+    }
 } 

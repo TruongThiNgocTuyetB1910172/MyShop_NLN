@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 // use App\Http\Services\CartService;
 use App\Http\Services\Cart\CartService;
+use App\Models\Customer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,16 @@ class CartController extends Controller
 
         return response()->json([
             'error' => true
+        ]);
+    }
+    public function show(Customer $customer)
+    {
+        $carts = $this->cart->getProductForCart($customer);
+
+        return view('admin.cart.detail', [
+            'title' => 'Chi Tiết Đơn Hàng: ' . $customer->name,
+            'customer' => $customer,
+            'carts' => $carts
         ]);
     }
 }
